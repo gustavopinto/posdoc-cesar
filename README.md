@@ -1,16 +1,13 @@
 # Site · Pós-doutorado CESAR School
 
-Site estático (HTML + CSS) do pós-doutorado de Gustavo Pinto na CESAR School:
+Site estático de uma página do pós-doutorado de Gustavo Pinto na CESAR School:
 linhas de pesquisa, publicações e estudos em andamento.
 
 ## Estrutura
 
 ```
 .
-├── index.html            # Página inicial (hero, linhas de pesquisa)
-├── publicacoes.html      # Artigos (aceitos / em submissão)
-├── estudos.html          # Estudos em andamento (RQs, protocolo)
-├── styles.css            # Estilos compartilhados
+├── index.html            # Página única (linhas, publicações, em andamento; CSS inline)
 ├── Dockerfile            # nginx:alpine servindo o site estático
 ├── nginx.conf.template   # Config nginx (porta via $PORT, /health, cache)
 └── railway.toml          # Configuração de deploy no Railway
@@ -40,8 +37,7 @@ Acesse http://localhost:8080
 
 ## Adicionar uma publicação
 
-Copie um `<article class="mod-card">` em `publicacoes.html` e ajuste título,
-autores, resumo e o selo de status (`status done` = aceito, `status wip` = em submissão).
-Atualize os números do hero em `index.html`.
+Copie um `<div class="pub">` na seção Publicações de `index.html` e ajuste título,
+autores, resumo e o selo de status (`status ok` = aceito, `status` = em submissão).
 # posdoc-cesar
 # posdoc-cesar
