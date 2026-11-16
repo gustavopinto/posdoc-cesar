@@ -1,0 +1,16 @@
+# Whitelist: esta pasta mistura o site com materiais privados do pós-doc
+# (termos de bolsa com dados pessoais, respostas de survey, repositórios
+# de alunos, rascunhos de artigos). Só os arquivos do site entram no git.
+/*
+!/.gitignore
+!/.dockerignore
+!/Dockerfile
+!/nginx.conf.template
+!/railway.toml
+!/README.md
+!/index.html
+!/publicacoes.html
+!/estudos.html
+!/styles.css
+!/img/
+.DS_Store

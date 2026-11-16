@@ -1,0 +1,7 @@
+# Ignora tudo; libera apenas os arquivos do site.
+*
+!index.html
+!publicacoes.html
+!estudos.html
+!styles.css
+!nginx.conf.template
