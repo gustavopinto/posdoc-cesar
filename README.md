@@ -44,3 +44,4 @@ Copie um `<article class="mod-card">` em `publicacoes.html` e ajuste título,
 autores, resumo e o selo de status (`status done` = aceito, `status wip` = em submissão).
 Atualize os números do hero em `index.html`.
 # posdoc-cesar
+# posdoc-cesar
