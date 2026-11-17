@@ -1,4 +1,5 @@
 # Ignora tudo; libera apenas os arquivos do site.
 *
 !index.html
+!ia-pesquisa-qualitativa.html
 !nginx.conf.template
