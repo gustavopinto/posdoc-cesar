@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IA na pesquisa qualitativa · CESAR School</title>
+  <meta name="description" content="Protocolo e cronogramas da consulta a estudantes de pós-graduação sobre o cookbook de LLMs na pesquisa qualitativa, para atualizar a disciplina de Pesquisa Qualitativa da CESAR School." />
+  <meta name="author" content="Gustavo Pinto" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%231a4d8f'/><text x='50' y='69' font-size='54' text-anchor='middle' fill='%23ffffff' font-family='Georgia,serif'>π</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ink: #1a1a1a; --soft: #4a4a4a; --muted: #8a8a8a; --line: #e8e6e1;
+      --accent: #1a4d8f; --tint: #f4f7fb; --warn: #8a5a00; --warn-bg: #fdf8ee;
+      --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+      --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #fff; color: var(--ink); font-family: var(--serif); font-size: 18px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    main { max-width: 760px; margin: 0 auto; padding: 56px 20px 40px; }
+    a { color: inherit; text-decoration: underline; text-decoration-color: #c9c6be; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+    a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+
+    nav.top { font-family: var(--sans); font-size: 13.5px; color: var(--muted); margin-bottom: 48px; }
+    nav.top a { text-decoration: none; color: var(--soft); }
+    nav.top a:hover { color: var(--accent); }
+    nav.top .sep { margin: 0 8px; color: #ccc; }
+
+    h1 { font-size: 34px; font-weight: 600; letter-spacing: -.01em; line-height: 1.2; margin: 0 0 14px; }
+    .lede { font-size: 19px; color: var(--soft); margin: 0 0 12px; }
+    .byline { font-family: var(--sans); font-size: 15px; color: var(--soft); line-height: 1.6; margin: 0; }
+    section { margin-top: 52px; }
+    h2 { font-variant: small-caps; text-transform: lowercase; font-size: 22px; font-weight: 600; letter-spacing: .04em; margin: 0 0 18px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+    h3 { font-family: var(--sans); font-size: 15px; font-weight: 600; margin: 28px 0 10px; }
+    p { margin: 0 0 16px; }
+    .small { font-family: var(--sans); font-size: 14px; color: var(--soft); }
+
+    .rq { margin: 0 0 10px; padding-left: 40px; text-indent: -40px; }
+    .rq b { display: inline-block; width: 40px; text-indent: 0; font-family: var(--sans); font-size: 14px; font-weight: 600; color: var(--muted); }
+
+    /* Tabelas */
+    .tbl { overflow-x: auto; margin: 0 0 16px; }
+    table { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 14px; line-height: 1.5; }
+    th, td { text-align: left; vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+    th { font-weight: 600; color: var(--soft); background: #faf9f6; }
+    td.d { white-space: nowrap; color: var(--soft); font-variant-numeric: tabular-nums; }
+    tr.ms td { background: var(--tint); }
+    tr.ms td:nth-child(2)::before { content: "◆ "; color: var(--accent); }
+    .tag { display: inline-block; font-size: 11.5px; font-weight: 600; color: var(--accent); border: 1px solid #c8d6ea; border-radius: 3px; padding: 0 5px; margin-right: 6px; white-space: nowrap; }
+
+    /* Fluxo */
+    ol.flow { list-style: none; padding: 0; margin: 8px 0 18px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; counter-reset: e; }
+    ol.flow li { position: relative; font-family: var(--sans); font-size: 13.5px; line-height: 1.45; border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: 4px; padding: 10px 12px 12px; background: #fff; counter-increment: e; }
+    ol.flow li b { display: block; font-size: 14.5px; margin-bottom: 4px; }
+    ol.flow li b::before { content: "E" counter(e) " "; color: var(--accent); }
+    ol.flow li span { color: var(--soft); }
+    .loop { font-family: var(--sans); font-size: 13.5px; color: var(--soft); border-left: 2px solid var(--accent); padding: 4px 0 4px 12px; margin: 0 0 16px; }
+
+    /* Planos colapsados */
+    .horizon { margin-top: 34px; }
+    .horizon > h3 { font-size: 16px; margin-bottom: 12px; }
+    details.plan { border: 1px solid var(--line); border-radius: 6px; margin: 0 0 12px; background: #fff; }
+    details.plan > summary { cursor: pointer; list-style: none; padding: 14px 16px; font-family: var(--sans); display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+    details.plan > summary::-webkit-details-marker { display: none; }
+    details.plan > summary::before { content: "▸"; color: var(--accent); font-size: 12px; width: 10px; }
+    details.plan[open] > summary::before { content: "▾"; }
+    details.plan > summary .name { font-weight: 600; font-size: 15.5px; }
+    details.plan > summary .meta { font-size: 13.5px; color: var(--muted); }
+    details.plan[open] > summary { border-bottom: 1px solid var(--line); }
+    .plan-body { padding: 16px 16px 6px; }
+    .plan-body p, .plan-body li { font-size: 16px; }
+    .plan-body ul { padding-left: 20px; margin: 0 0 16px; }
+    .risk { font-family: var(--sans); font-size: 14px; background: var(--warn-bg); border-left: 3px solid #d9a63a; padding: 10px 14px; margin: 0 0 16px; border-radius: 0 4px 4px 0; }
+    .risk b { color: var(--warn); }
+
+    ol.recipes { list-style: none; padding: 0; margin: 0 0 12px; counter-reset: r; }
+    ol.recipes li { counter-increment: r; position: relative; padding-left: 44px; margin-bottom: 10px; font-size: 16.5px; line-height: 1.55; }
+    ol.recipes li::before { content: "R" counter(r); position: absolute; left: 0; top: 2px; font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--accent); }
+    ol.recipes .m { font-family: var(--sans); font-size: 12.5px; color: var(--muted); white-space: nowrap; }
+    #metodos h3.ver { font-size: 16.5px; margin-top: 34px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+    #metodos h4 { font-family: var(--sans); font-size: 15px; font-weight: 600; margin: 24px 0 8px; }
+    #metodos h4 .m { font-weight: 400; font-size: 12.5px; color: var(--muted); margin-left: 6px; }
+    ol.steps { padding-left: 22px; margin: 0 0 16px; }
+    ol.steps li { margin-bottom: 10px; }
+    #metodos h3 { font-size: 15.5px; margin-top: 30px; }
+    #metodos h3 .m { font-family: var(--sans); }
+    #metodos h3 .m { font-weight: 400; font-size: 12.5px; color: var(--muted); margin-left: 6px; }
+    ul.parts { padding-left: 20px; margin: 0 0 16px; }
+    ul.parts li { margin-bottom: 4px; }
+    .sources h3 { font-size: 14.5px; margin-top: 24px; }
+    .sources h4 { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--muted); margin: 16px 0 6px; }
+    .sources ul { list-style: none; padding: 0; margin: 0; }
+    .sources li { font-family: var(--sans); font-size: 12.5px; line-height: 1.5; color: var(--soft); margin-bottom: 6px; overflow-wrap: anywhere; }
+    .sources li strong { color: var(--ink); }
+    .sources a { color: var(--accent); }
+    ul.open { padding-left: 20px; }
+    ul.open li { margin-bottom: 8px; }
+
+    footer { margin-top: 72px; padding-top: 18px; border-top: 1px solid var(--line); font-family: var(--sans); font-size: 13.5px; color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 20px; }
+    footer a { color: var(--soft); }
+
+    @media (max-width: 600px) {
+      body { font-size: 17px; }
+      main { padding-top: 36px; }
+      h1 { font-size: 28px; }
+      ol.flow { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 400px) { ol.flow { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+
+  <nav class="top" aria-label="Seções">
+    <a href="index.html">← Início</a><span class="sep">·</span><a href="#objetivo">Objetivo</a><span class="sep">·</span><a href="#cookbook">Cookbook</a><span class="sep">·</span><a href="#metodos">Métodos</a><span class="sep">·</span><a href="#aberto">Em aberto</a><span class="sep">·</span><a href="#fontes">Fontes</a>
+  </nav>
+
+  <header>
+    <h1>IA na pesquisa qualitativa</h1>
+    <p class="lede">
+      Um cookbook com dez receitas para usar LLMs na pesquisa qualitativa sem abrir mão do rigor,
+      e o que ele muda no ensino de método.
+    </p>
+  </header>
+
+  <section id="objetivo">
+    <h2>Objetivo</h2>
+    <p>
+      Levar o cookbook a pós-graduandos da CESAR School (e de outras instituições), pedir que usem
+      algumas receitas e ouvir o que funcionou e o que faltou. O resultado é uma proposta de
+      atualização curricular das disciplinas de pesquisa qualitativa do mestrado e do doutorado em
+      Engenharia de Software e em Design da CESAR School, e a versão 2 do cookbook.
+    </p>
+    <p class="rq"><b>P1</b>Que receitas os alunos entendem, usariam e rejeitariam?</p>
+    <p class="rq"><b>P2</b>O que eles precisariam saber antes de aplicar uma receita, e a disciplina deveria ensinar?</p>
+  </section>
+
+  <section id="cookbook">
+    <h2>O cookbook</h2>
+    <p>
+      Construído a partir da revisão multivocal (131 fontes: 49 artigos fora de ES, 32 de ES e
+      computação, 50 de literatura cinzenta; <a href="#fontes">lista completa</a>). Tem três partes:
+    </p>
+    <ul class="parts">
+      <li><b>Antes de começar:</b> o método admite IA?, ética e TCLE, caderno de bordo.</li>
+      <li><b>Dez receitas</b>, listadas abaixo.</li>
+      <li><b>Guia de relato:</b> modelo de declaração para Métodos, checklist e o que cada editora pede.</li>
+    </ul>
+    <p>
+      Cada receita usa um de três modos: <b>ferramenta</b> (tarefa estreita e verificável),
+      <b>colaboração</b> (a IA sugere, o pesquisador decide) ou <b>delegação</b> (a IA faz a etapa,
+      só depois de validada).
+    </p>
+    <p>
+      As receitas são numeradas de R1 a R10 (R de receita). R1 a R6 seguem as etapas da análise,
+      da transcrição aos temas. R7 e R8 são verificações que acompanham as receitas de codificação.
+      R9 e R10 tratam do instrumento de coleta e da qualidade das respostas de survey. Todas têm o
+      mesmo formato: quando usar, passo a passo, onde o humano decide, como validar, o que registrar
+      e o que reportar.
+    </p>
+    <ol class="recipes">
+      <li><b>Transcrição local e anonimização.</b> Áudio vira texto anonimizado sem sair do computador da equipe; revisão humana integral. <span class="m">ferramenta</span></li>
+      <li><b>Rascunho de codebook em colaboração.</b> O pesquisador lista seus códigos primeiro; a IA sugere candidatos e aponta definições sobrepostas. <span class="m">colaboração</span></li>
+      <li><b>Codificação dedutiva validada.</b> A IA aplica um codebook estável a muito material, só depois de igualar a concordância entre humanos numa amostra-ouro. É a receita com mais evidência. <span class="m">ferramenta → delegação</span></li>
+      <li><b>IA como segunda codificadora.</b> Para quem codifica sozinho: as divergências viram discussão, com justificativa e trecho literal. <span class="m">colaboração</span></li>
+      <li><b>Codificação aberta com citação ancorada.</b> O humano codifica primeiro; a IA amplia, e todo trecho citado é conferido contra o original. <span class="m">colaboração</span></li>
+      <li><b>Temas com advogado do diabo.</b> A IA organiza códigos aprovados em temas candidatos e depois ataca os temas do pesquisador. <span class="m">colaboração</span></li>
+      <li><b>Teste de estabilidade.</b> Mesmos dados, mesmo prompt, várias execuções e mais de um modelo, para ver se o resultado muda. <span class="m">ferramenta</span></li>
+      <li><b>Auditoria de viés.</b> Verifica se os erros da IA se concentram em certos códigos ou em certos grupos de participantes. <span class="m">ferramenta</span></li>
+      <li><b>Piloto de instrumento com personas.</b> Testa a redação de roteiro ou questionário antes do campo; não substitui piloto com pessoas. <span class="m">ferramenta</span></li>
+      <li><b>Triagem de autenticidade.</b> Identifica respostas abertas de survey escritas por IA em vez do participante. <span class="m">ferramenta</span></li>
+    </ol>
+    <p>
+      Ficam só com o pesquisador: pergunta e desenho, familiarização com os dados, temas latentes,
+      interpretação, teoria e reflexividade. Participantes sintéticos como dado: não usar. Em abordagens
+      reflexivas (TA de Braun e Clarke, fenomenologia, etnografia), só R1 e, no máximo, R6 depois da análise pronta.
+    </p>
+  </section>
+
+  <section id="metodos">
+    <h2>Métodos de coleta</h2>
+    <p>
+      Planejamos duas versões do estudo. A simples é uma única coleta, até 18/12/2026, e serve de
+      piloto. A robusta, até 14/05/2027, combina quatro métodos e termina na proposta de atualização
+      curricular.
+    </p>
+
+    <h3 class="ver">Versão simples · até 18/12/2026</h3>
+    <p>
+      Um grupo focal on-line com 5 a 8 pós-graduandos de uma instituição fora da CESAR.
+    </p>
+    <ol class="steps">
+      <li><b>Preparação</b> (cerca de 1 h, antes do grupo). Cada participante recebe o cookbook e testa
+        uma receita (R2 ou R5) num mini-corpus público. Assim, o grupo discute uma experiência real,
+        e não um documento que ninguém usou.</li>
+      <li><b>Grupo focal</b> (90 min, gravado). Roteiro em quatro blocos: onde a receita falhou; o que
+        deveria ficar só com o pesquisador; o que a disciplina deveria ensinar antes de qualquer
+        receita; e uma votação para priorizar tópicos candidatos para a ementa. Conduzido por alguém
+        que não leciona para a turma, com um segundo moderador anotando.</li>
+      <li><b>Análise rápida.</b> Uma matriz com as perguntas-guia (P1, P2) nas linhas e os blocos do
+        roteiro nas colunas, preenchida a partir da gravação.</li>
+    </ol>
+    <p class="out"><b>Produz:</b> relatório curto de achados e ajustes para o cookbook v1.1 e para o roteiro da versão robusta.</p>
+
+    <h3 class="ver">Versão robusta · até 14/05/2027</h3>
+    <p>
+      CESAR (mestrado e doutorado em Engenharia de Software e em Design) e 2 a 3 instituições
+      parceiras. Quatro métodos, nesta ordem:
+    </p>
+    <ul class="parts">
+      <li>os alunos usam o cookbook (tarefa guiada);</li>
+      <li>contam como foi sozinhos (survey);</li>
+      <li>depois contam em grupo (grupo focal);</li>
+      <li>por fim, os casos que destoam são entrevistados (entrevista).</li>
+    </ul>
+    <p>
+      O survey mostra o quanto cada opinião se repete, o grupo focal explica o porquê e a entrevista
+      aprofunda as exceções. Na CESAR, tarefa, survey e grupo focal cabem num bloco de 2 horas no
+      início da aula, em 22/01/2027 ou 12/03/2027.
+    </p>
+
+    <h4>1. Tarefa guiada <span class="m">na CESAR, 55 min em sala; nas parceiras, 2–3 h assíncrona</span></h4>
+    <p>
+      Os alunos leem a Parte I do cookbook e aplicam R2 (codebook) e R5 (codificação aberta) a um
+      mini-corpus público de cerca de 20 trechos, preenchendo o caderno de bordo: prompt, saída, o que
+      aceitaram e o que rejeitaram. O caderno mostra o que eles fizeram, que pode diferir do que dizem ter feito.
+    </p>
+    <p class="out"><b>Produz:</b> cadernos de bordo e entregas. <b>Responde:</b> P1 (o que conseguiram usar) e P2 (onde travaram).</p>
+
+    <h4>2. Survey <span class="m">10–15 min, individual, logo após a tarefa</span></h4>
+    <p>
+      Três blocos: perfil (programa, nível, experiência com pesquisa qualitativa, uso atual de IA);
+      avaliação de cada receita em escala de 5 pontos (clareza, utilidade, confiança no resultado,
+      intenção de usar de novo); e perguntas abertas sobre onde travaram e o que precisariam ter
+      aprendido antes. Alcança também quem falaria pouco num grupo.
+    </p>
+    <p class="out"><b>Produz:</b> estatística descritiva por receita e respostas abertas. <b>Responde:</b> P1 e P2; também orienta a escolha dos entrevistados.</p>
+
+    <h4>3. Grupo focal <span class="m">45 min na CESAR; 90 min on-line nas parceiras; 5–8 pessoas</span></h4>
+    <p>
+      O mesmo roteiro da versão simples, ajustado com o piloto, com um grupo por instituição.
+      Faz aparecer divergências e justificativas que o survey não capta.
+    </p>
+    <p class="out"><b>Produz:</b> transcrições e a priorização dos tópicos da ementa. <b>Responde:</b> P2 e o desenho das novas disciplinas.</p>
+
+    <h4>4. Entrevista individual <span class="m">semiestruturada, 40 min, on-line</span></h4>
+    <p>
+      Com 6 a 10 alunos escolhidos a partir do survey e do caderno de bordo: quem mais usou IA, quem
+      mais rejeitou e quem modificou as receitas. A entrevista retoma o caderno de bordo do próprio
+      aluno e pergunta pelas decisões que ele registrou.
+    </p>
+    <p class="out"><b>Produz:</b> transcrições de casos extremos. <b>Responde:</b> P1 e P2 em profundidade.</p>
+
+    <p>
+      <b>Análise.</b> Transcrição local (R1) e análise temática com codebook e dois codificadores,
+      cruzando os quatro métodos receita por receita e comparando CESAR e parceiras, e Engenharia de
+      Software e Design.
+    </p>
+  </section>
+
+
+
+  <section id="aberto">
+    <h2>Em aberto</h2>
+    <ul class="open">
+      <li><b>Rota ética.</b> Incluir outras instituições provavelmente pede emenda ao CEP; sem ela, os dados servem para reformular as disciplinas, não para publicar.</li>
+      <li><b>Parceiras.</b> Quais instituições e quem é o contato local em cada uma.</li>
+      <li><b>Mini-corpus.</b> Público e sem dados sensíveis: o D1 da Fase 2, se for público, ou posts do Reddit do <a href="https://arxiv.org/abs/2607.29519" target="_blank" rel="noopener"><em>Outsourcing the Struggle</em></a>.</li>
+      <li><b>Moderação.</b> Gustavo Pinto conduz os grupos focais, com Danilo Ribeiro como segundo moderador.</li>
+    </ul>
+  </section>
+
+  <section id="fontes" class="sources">
+    <h2>Fontes</h2>
+    <p class="small">As 131 fontes da revisão multivocal (busca em 17/11/2026). Os códigos (A01, B03, C24…) são os mesmos citados no cookbook.</p>
+<h3>Artigos fora de engenharia de software (A)</h3>
+<ul>
+<li><strong>A01.</strong> Morgan, D. L. (2023). Exploring the use of artificial intelligence for qualitative data analysis: The case of ChatGPT. <em>International Journal of Qualitative Methods, 22</em>. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/16094069231211248" class="uri">https://doi.org/10.1177/16094069231211248</a></li>
+<li><strong>A02.</strong> De Paoli, S. (2024). Performing an inductive thematic analysis of semi-structured interviews with a large language model: An exploration and provocation on the limits of the approach. <em>Social Science Computer Review, 42</em>(4). <a target="_blank" rel="noopener" href="https://doi.org/10.1177/08944393231220483" class="uri">https://doi.org/10.1177/08944393231220483</a></li>
+<li><strong>A03.</strong> Xiao, Z., Yuan, X., Liao, Q. V., Abdelghani, R., &amp; Oudeyer, P.-Y. (2023). Supporting qualitative analysis with large language models: Combining codebook with GPT-3 for deductive coding. <em>IUI ’23 Companion</em>, 75–78. <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3581754.3584136" class="uri">https://doi.org/10.1145/3581754.3584136</a></li>
+<li><strong>A04.</strong> Dai, S.-C., Xiong, A., &amp; Ku, L.-W. (2023). LLM-in-the-loop: Leveraging large language model for thematic analysis. <em>Findings of EMNLP 2023</em>, 9993–10001. <a target="_blank" rel="noopener" href="https://doi.org/10.18653/v1/2023.findings-emnlp.669" class="uri">https://doi.org/10.18653/v1/2023.findings-emnlp.669</a></li>
+<li><strong>A05.</strong> Gao, J., Guo, Y., Lim, G., Zhang, T., Zhang, Z., Li, T. J.-J., &amp; Perrault, S. T. (2024). CollabCoder: A lower-barrier, rigorous workflow for inductive collaborative qualitative analysis with large language models. <em>CHI ’24</em>. <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3613904.3642002" class="uri">https://doi.org/10.1145/3613904.3642002</a></li>
+<li><strong>A06.</strong> Zhang, H., Wu, C., Xie, J., Lyu, Y., Cai, J., &amp; Carroll, J. M. (2023). Redefining qualitative analysis in the AI era: Utilizing ChatGPT for efficient thematic analysis [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2309.10771" class="uri">https://arxiv.org/abs/2309.10771</a></li>
+<li><strong>A07.</strong> Zhang, H., Wu, C., Xie, J., Rubino, F., Graver, S., Kim, C., Carroll, J. M., &amp; Cai, J. (2024). When qualitative research meets large language model: Exploring the potential of QualiGPT as a tool for qualitative coding [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2407.14925" class="uri">https://arxiv.org/abs/2407.14925</a></li>
+<li><strong>A08.</strong> Chew, R., Bollenbacher, J., Wenger, M., Speer, J., &amp; Kim, A. (2023). LLM-assisted content analysis: Using large language models to support deductive coding [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.14924" class="uri">https://arxiv.org/abs/2306.14924</a></li>
+<li><strong>A09.</strong> Tai, R. H., Bentley, L. R., Xia, X., Sitt, J. M., Fankhauser, S. C., Chicas-Mosier, A. M., &amp; Monteith, B. G. (2024). An examination of the use of large language models to aid analysis of textual data. <em>International Journal of Qualitative Methods, 23</em>. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/16094069241231168" class="uri">https://doi.org/10.1177/16094069241231168</a></li>
+<li><strong>A10.</strong> Hamilton, L., Elliott, D., Quick, A., Smith, S., &amp; Choplin, V. (2023). Exploring the use of AI in qualitative analysis: A comparative study of guaranteed income data. <em>International Journal of Qualitative Methods, 22</em>. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/16094069231201504" class="uri">https://doi.org/10.1177/16094069231201504</a></li>
+<li><strong>A11.</strong> Wachinger, J., Bärnighausen, K., Schäfer, L. N., Scott, K., &amp; McMahon, S. A. (2025). Prompts, pearls, imperfections: Comparing ChatGPT and a human researcher in qualitative data analysis. <em>Qualitative Health Research, 35</em>(9). <a target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/38775392/" class="uri">https://pubmed.ncbi.nlm.nih.gov/38775392/</a></li>
+<li><strong>A12.</strong> Schroeder, H., Aubin Le Quéré, M., Randazzo, C., Mimno, D., &amp; Schoenebeck, S. (2025). Large language models in qualitative research: Uses, tensions, and intentions. <em>CHI ’25</em>. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2410.07362" class="uri">https://arxiv.org/abs/2410.07362</a></li>
+<li><strong>A13.</strong> Jowsey, T., Braun, V., Clarke, V., Lupton, D., &amp; Fine, M. (2025). We reject the use of generative artificial intelligence for reflexive qualitative research. <em>Qualitative Inquiry</em>. <a target="_blank" rel="noopener" href="https://research.bond.edu.au/en/publications/we-reject-the-use-of-generative-artificial-intelligence-for-refle/" class="uri">https://research.bond.edu.au/en/publications/we-reject-the-use-of-generative-artificial-intelligence-for-refle/</a></li>
+<li><strong>A14.</strong> Lin, H., &amp; Zhang, Y. (2025). Navigating the risks of using large language models for text annotation in social science research [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2503.22040" class="uri">https://arxiv.org/abs/2503.22040</a></li>
+<li><strong>A15.</strong> Kosch, T., &amp; Feger, S. (2024). Risk or chance? Large language models and reproducibility in HCI research. <em>Interactions, 31</em>(6). <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3695765" class="uri">https://doi.org/10.1145/3695765</a></li>
+<li><strong>A16.</strong> Törnberg, P. (2024). Best practices for text annotation with large language models. <em>Sociologica, 18</em>(2), 67–85. <a target="_blank" rel="noopener" href="https://doi.org/10.6092/issn.1971-8853/19461" class="uri">https://doi.org/10.6092/issn.1971-8853/19461</a></li>
+<li><strong>A17.</strong> Ziems, C., Held, W., Shaikh, O., Chen, J., Zhang, Z., &amp; Yang, D. (2024). Can large language models transform computational social science? <em>Computational Linguistics, 50</em>(1), 237–291. <a target="_blank" rel="noopener" href="https://doi.org/10.1162/coli_a_00502" class="uri">https://doi.org/10.1162/coli_a_00502</a></li>
+<li><strong>A18.</strong> Bijker, R., Merkouris, S. S., Dowling, N. A., &amp; Rodda, S. N. (2024). ChatGPT for automated qualitative research: Content analysis. <em>Journal of Medical Internet Research, 26</em>, e59050. <a target="_blank" rel="noopener" href="https://doi.org/10.2196/59050" class="uri">https://doi.org/10.2196/59050</a></li>
+<li><strong>A19.</strong> Hitch, D. (2024). Artificial intelligence augmented qualitative analysis: The way of the future? <em>Qualitative Health Research</em>. <a target="_blank" rel="noopener" href="https://papers.ssrn.com/abstract=4451740" class="uri">https://papers.ssrn.com/abstract=4451740</a></li>
+<li><strong>A20.</strong> Perkins, M., &amp; Roe, J. (2024). The use of generative AI in qualitative analysis: Inductive thematic analysis with ChatGPT. <em>Journal of Applied Learning &amp; Teaching, 7</em>(1), 390–395. <a target="_blank" rel="noopener" href="https://doi.org/10.37074/jalt.2024.7.1.22" class="uri">https://doi.org/10.37074/jalt.2024.7.1.22</a></li>
+<li><strong>A21.</strong> Christou, P. A. (2024). Thematic analysis through artificial intelligence (AI). <em>The Qualitative Report, 29</em>(2), 560–576. <a target="_blank" rel="noopener" href="https://doi.org/10.46743/2160-3715/2024.7046" class="uri">https://doi.org/10.46743/2160-3715/2024.7046</a></li>
+<li><strong>A22.</strong> Nguyen-Trung, K. (2025). ChatGPT in thematic analysis: Can AI become a research assistant in qualitative research? <em>Quality &amp; Quantity, 59</em>(6). Preprint: <a target="_blank" rel="noopener" href="https://doi.org/10.31219/osf.io/vefwc" class="uri">https://doi.org/10.31219/osf.io/vefwc</a></li>
+<li><strong>A23.</strong> Sinha, R., Solola, I., Nguyen, H., Swanson, H., &amp; Lawrence, L. (2024). The role of generative AI in qualitative research: GPT-4’s contributions to a grounded theory analysis. <em>LDT ’24</em>. <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3663433.3663456" class="uri">https://doi.org/10.1145/3663433.3663456</a></li>
+<li><strong>A24.</strong> Wuttke, A., Aßenmacher, M., Klamm, C., Lang, M. M., Würschinger, Q., &amp; Kreuter, F. (2025). AI conversational interviewing: Transforming surveys with LLMs as adaptive interviewers. <em>LaTeCH-CLfL 2025</em>, 179–204. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2410.01824" class="uri">https://arxiv.org/abs/2410.01824</a></li>
+<li><strong>A25.</strong> Chopra, F., &amp; Haaland, I. (2023). Conducting qualitative interviews with AI (CESifo Working Paper No. 10666). <a target="_blank" rel="noopener" href="https://www.cesifo.org/en/publications/2023/working-paper/conducting-qualitative-interviews-ai" class="uri">https://www.cesifo.org/en/publications/2023/working-paper/conducting-qualitative-interviews-ai</a></li>
+<li><strong>A26.</strong> Geiecke, F., &amp; Jaravel, X. (2024). Conversations at scale: Robust AI-led interviews (CEPR Discussion Paper 19705). <a target="_blank" rel="noopener" href="https://papers.ssrn.com/abstract=4974382" class="uri">https://papers.ssrn.com/abstract=4974382</a></li>
+<li><strong>A27.</strong> Kapania, S., Agnew, W., Eslami, M., Heidari, H., &amp; Fox, S. E. (2025). “Simulacrum of stories”: Examining large language models as qualitative research participants. <em>CHI ’25</em>. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2409.19430" class="uri">https://arxiv.org/abs/2409.19430</a></li>
+<li><strong>A28.</strong> Agnew, W., Bergman, A. S., Chien, J., Díaz, M., El-Sayed, S., Pittman, J., Mohamed, S., &amp; McKee, K. R. (2024). The illusion of artificial inclusion. <em>CHI ’24</em>. <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3613904.3642703" class="uri">https://doi.org/10.1145/3613904.3642703</a></li>
+<li><strong>A29.</strong> Wang, A., Morgenstern, J., &amp; Dickerson, J. P. (2024). Large language models that replace human participants can harmfully misportray and flatten identity groups [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2402.01908" class="uri">https://arxiv.org/abs/2402.01908</a></li>
+<li><strong>A30.</strong> Prescott, M. R., Yeager, S., Ham, L., et al. (2024). Comparing the efficacy and efficiency of human and generative AI: Qualitative thematic analyses. <em>JMIR AI, 3</em>, e54482. <a target="_blank" rel="noopener" href="https://doi.org/10.2196/54482" class="uri">https://doi.org/10.2196/54482</a></li>
+<li><strong>A31.</strong> Lee, V. V., van der Lubbe, S. C. C., Goh, L. H., &amp; Valderas, J. M. (2024). Harnessing ChatGPT for thematic analysis: Are we ready? <em>Journal of Medical Internet Research, 26</em>, e54974. <a target="_blank" rel="noopener" href="https://doi.org/10.2196/54974" class="uri">https://doi.org/10.2196/54974</a></li>
+<li><strong>A32.</strong> Ashwin, J., Chhabra, A., &amp; Rao, V. (2025). Using large language models for qualitative analysis can introduce serious bias. <em>Sociological Methods &amp; Research</em>. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/00491241251338246" class="uri">https://doi.org/10.1177/00491241251338246</a></li>
+<li><strong>A33.</strong> Davison, R. M., Chughtai, H., Nielsen, P., et al. (2024). The ethics of using generative AI for qualitative data analysis. <em>Information Systems Journal, 34</em>(5), 1433–1439. <a target="_blank" rel="noopener" href="https://doi.org/10.1111/isj.12504" class="uri">https://doi.org/10.1111/isj.12504</a></li>
+<li><strong>A34.</strong> Wollin-Giering, S., Hoffmann, M., Höfting, J., &amp; Ventzke, C. (2024). Automatic transcription of English and German qualitative interviews. <em>Forum Qualitative Sozialforschung / FQS, 25</em>(1), Art. 8. <a target="_blank" rel="noopener" href="https://doi.org/10.17169/fqs-25.1.4129" class="uri">https://doi.org/10.17169/fqs-25.1.4129</a></li>
+<li><strong>A35.</strong> Mathis, W. S., Zhao, S., Pratt, N., Weleff, J., &amp; De Paoli, S. (2024). Inductive thematic analysis of healthcare qualitative interviews using open-source large language models. <em>Computer Methods and Programs in Biomedicine, 255</em>, 108356. <a target="_blank" rel="noopener" href="https://pubmed.ncbi.nlm.nih.gov/39067136/" class="uri">https://pubmed.ncbi.nlm.nih.gov/39067136/</a></li>
+<li><strong>A36.</strong> Barany, A., Nasiar, N., Porter, C., Zambrano, A. F., Andres, A. L., Bright, D., et al. (2024). ChatGPT for education research: Exploring the potential of large language models for qualitative codebook development. <em>AIED 2024</em>, 134–149. <a target="_blank" rel="noopener" href="https://learninganalytics.upenn.edu/ryanbaker/paper_9012.pdf" class="uri">https://learninganalytics.upenn.edu/ryanbaker/paper_9012.pdf</a></li>
+<li><strong>A37.</strong> Liu, X., Zambrano, A. F., Baker, R. S., Barany, A., Ocumpaugh, J., et al. (2025). Qualitative coding with GPT-4: Where it works better. <em>Journal of Learning Analytics, 12</em>(1), 169–185. <a target="_blank" rel="noopener" href="https://doi.org/10.18608/jla.2025.8575" class="uri">https://doi.org/10.18608/jla.2025.8575</a></li>
+<li><strong>A38.</strong> Goyanes, M., Lopezosa, C., &amp; Jordá, B. (2025). Thematic analysis of interview data with ChatGPT: Designing and testing a reliable research protocol for qualitative research. <em>Quality &amp; Quantity, 59</em>, 5491–5510. <a target="_blank" rel="noopener" href="https://doi.org/10.1007/s11135-025-02199-3" class="uri">https://doi.org/10.1007/s11135-025-02199-3</a></li>
+<li><strong>A39.</strong> Naeem, M., Smith, T., &amp; Thomas, L. (2025). Thematic analysis and artificial intelligence: A step-by-step process for using ChatGPT in thematic analysis. <em>International Journal of Qualitative Methods, 24</em>. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/16094069251333886" class="uri">https://doi.org/10.1177/16094069251333886</a></li>
+<li><strong>A40.</strong> Barros, C. F., Azevedo, B. B., Graciano Neto, V. V., Kassab, M., Kalinowski, M., do Nascimento, H. A. D., &amp; Bandeira, M. C. G. S. P. (2025). Large language model for qualitative research: A systematic mapping study. <em>WSESE 2025</em>, 48–55. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.14473" class="uri">https://arxiv.org/abs/2411.14473</a> (citado como B07 no texto)</li>
+<li><strong>A41.</strong> Kirsten, E., Buckmann, A., Lassak, L., Borgert, N., Mhaidli, A., &amp; Becker, S. (2025). From assistance to autonomy: A researcher study on the potential of AI support for qualitative data analysis [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2501.19275" class="uri">https://arxiv.org/abs/2501.19275</a></li>
+<li><strong>A42.</strong> Hayes, A. S. (2025). “Conversing” with qualitative data: Enhancing qualitative research through large language models (LLMs). <em>International Journal of Qualitative Methods, 24</em>. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/16094069251322346" class="uri">https://doi.org/10.1177/16094069251322346</a></li>
+<li><strong>A43.</strong> Nguyen, D. C., &amp; Welch, C. (2025). Generative artificial intelligence in qualitative data analysis: Analyzing—or just chatting? <em>Organizational Research Methods, 29</em>(1), 3–39. <a target="_blank" rel="noopener" href="https://doi.org/10.1177/10944281251377154" class="uri">https://doi.org/10.1177/10944281251377154</a></li>
+<li><strong>A44.</strong> Lindebaum, D., &amp; Fleming, P. (2024). ChatGPT undermines human reflexivity, scientific responsibility and responsible management research. <em>British Journal of Management, 35</em>(2), 566–575. <a target="_blank" rel="noopener" href="https://researchportal.bath.ac.uk/en/publications/chatgpt-undermines-human-reflexivity-scientific-responsibility-an/" class="uri">https://researchportal.bath.ac.uk/en/publications/chatgpt-undermines-human-reflexivity-scientific-responsibility-an/</a></li>
+<li><strong>A45.</strong> Khan, A. H., Kegalle, H., D’Silva, R., Watt, N., Whelan-Shamy, D., Ghahremanlou, L., &amp; Magee, L. (2024). Automating thematic analysis: How LLMs analyse controversial topics. <em>Microsoft Journal for Applied Research, 21</em>, 69–87. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2405.06919" class="uri">https://arxiv.org/abs/2405.06919</a></li>
+<li><strong>A46.</strong> Jenner, S., et al. (2025). Using large language models for narrative analysis: A novel application of generative AI. <em>Methods in Psychology, 12</em>, 100183. <a target="_blank" rel="noopener" href="https://doi.org/10.1016/j.metip.2025.100183" class="uri">https://doi.org/10.1016/j.metip.2025.100183</a></li>
+<li><strong>A47.</strong> Rathje, S., Mirea, D.-M., Sucholutsky, I., Marjieh, R., Robertson, C. E., &amp; Van Bavel, J. J. (2024). GPT is an effective tool for multilingual psychological text analysis. <em>PNAS, 121</em>(34), e2308950121. <a target="_blank" rel="noopener" href="https://doi.org/10.1073/pnas.2308950121" class="uri">https://doi.org/10.1073/pnas.2308950121</a></li>
+<li><strong>A48.</strong> Fehring, L., Frings, J., Rust, P., Kempny, C., Thürmann, P., &amp; Meister, S. (2025). Extension of the Consolidated Criteria for Reporting Qualitative Research guideline to large language models (COREQ+LLM): Protocol for a multiphase study. <em>JMIR Research Protocols, 14</em>, e78682. <a target="_blank" rel="noopener" href="https://doi.org/10.2196/78682" class="uri">https://doi.org/10.2196/78682</a></li>
+<li><strong>A49.</strong> Gierbolini-Rivera, et al. (2026). Generative artificial intelligence for qualitative methods in health research: Rapid review. <em>Journal of Medical Internet Research, 28</em>, e98551. <a target="_blank" rel="noopener" href="https://doi.org/10.2196/98551" class="uri">https://doi.org/10.2196/98551</a></li>
+</ul>
+<h3>Artigos de engenharia de software e computação (B)</h3>
+<p>B07, B31, B32 e B33 são os mesmos trabalhos que A40, A05, A03 e A04 e não se repetem aqui.</p>
+<ul>
+<li><strong>B01.</strong> Bano, M., Zowghi, D., &amp; Whittle, J. (2023). Exploring qualitative research using LLMs [Preprint]. Publicado como: AI and human reasoning: Qualitative research in the age of large language models. <em>The AI Ethics Journal</em> (2024). <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2306.13298" class="uri">https://arxiv.org/abs/2306.13298</a></li>
+<li><strong>B02.</strong> Bano, M., Hoda, R., Zowghi, D., &amp; Treude, C. (2024). Large language models for qualitative research in software engineering: Exploring opportunities and challenges. <em>Automated Software Engineering, 31</em>(1), 8. <a target="_blank" rel="noopener" href="https://doi.org/10.1007/s10515-023-00407-8" class="uri">https://doi.org/10.1007/s10515-023-00407-8</a></li>
+<li><strong>B03.</strong> Ahmed, T., Devanbu, P., Treude, C., &amp; Pradel, M. (2025). Can LLMs replace manual annotation of software engineering artifacts? <em>MSR 2025</em>. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2408.05534" class="uri">https://arxiv.org/abs/2408.05534</a></li>
+<li><strong>B04.</strong> Baltes, S., Angermeir, F., Arora, C., et al. (2025–2026). Guidelines for empirical studies in software engineering involving large language models. <em>Empirical Software Engineering</em> (aceito). <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.15503" class="uri">https://arxiv.org/abs/2508.15503</a> · <a target="_blank" rel="noopener" href="https://llm-guidelines.org/" class="uri">https://llm-guidelines.org/</a></li>
+<li><strong>B05.</strong> Wagner, S., Muñoz Barón, M., Falessi, D., &amp; Baltes, S. (2025). Towards evaluation guidelines for empirical studies involving LLMs. <em>WSESE 2025</em>. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2411.07668" class="uri">https://arxiv.org/abs/2411.07668</a></li>
+<li><strong>B06.</strong> Sallou, J., Durieux, T., &amp; Panichella, A. (2024). Breaking the silence: The threats of using LLMs in software engineering. <em>ICSE-NIER 2024</em>, 102–106. <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3639476.3639764" class="uri">https://doi.org/10.1145/3639476.3639764</a></li>
+<li><strong>B07.</strong> = A40 (Barros et al., 2025).</li>
+<li><strong>B08.</strong> de Morais Leça, M., Valença, L., Santos, R., &amp; de Souza Santos, R. (2025). Applications and implications of large language models in qualitative analysis: A new frontier for empirical software engineering. <em>WSESE 2025</em>. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2412.06564" class="uri">https://arxiv.org/abs/2412.06564</a></li>
+<li><strong>B09.</strong> Martinez Montes, C., Feldt, R., Miguel Martos, C., Ouhbi, S., Premanandan, S., &amp; Graziotin, D. (2025). Large language models in thematic analysis: Prompt engineering, evaluation, and guidelines for qualitative software engineering research [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2510.18456" class="uri">https://arxiv.org/abs/2510.18456</a></li>
+<li><strong>B10.</strong> Ornelas, T., Araújo, A. A., Araújo, J., Araújo, M., Trinkenreich, B., &amp; Kalinowski, M. (2025). LLM-assisted thematic analysis: Opportunities, limitations, and recommendations [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2511.14528" class="uri">https://arxiv.org/abs/2511.14528</a></li>
+<li><strong>B11.</strong> Ernst, N. A., &amp; Treude, C. (2026). GenAI is no silver bullet for qualitative research in software engineering. <em>ACM TOSEM</em> (aceito). <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2603.08951" class="uri">https://arxiv.org/abs/2603.08951</a></li>
+<li><strong>B12.</strong> Trinkenreich, B., Calefato, F., Blincoe, K., Wivestad, V. T., Santos Alves, A. P., Condé Araújo, J., Condé Araújo, M., Tell, P., Kalinowski, M., Zimmermann, T., &amp; Storey, M.-A. (2026). Taking a pulse on how generative AI is reshaping the software engineering research landscape [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.11184" class="uri">https://arxiv.org/abs/2604.11184</a></li>
+<li><strong>B13.</strong> Treude, C., &amp; Storey, M.-A. (2025). Generative AI and empirical software engineering: A paradigm shift. <em>AIware 2025</em>. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2502.08108" class="uri">https://arxiv.org/abs/2502.08108</a></li>
+<li><strong>B14.</strong> Shah, S. T. U., Hussein, M., Barcomb, A., &amp; Moshirpour, M. (2025). From inductive to deductive: LLMs-based qualitative data analysis in requirements engineering. <em>NLP4RE 2025</em> (CEUR-WS Vol-3959). <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2504.19384" class="uri">https://arxiv.org/abs/2504.19384</a></li>
+<li><strong>B15.</strong> Colavito, G., Lanubile, F., Novielli, N., &amp; Quaranta, L. (2024). Leveraging GPT-like LLMs to automate issue labeling. <em>MSR 2024</em>. <a target="_blank" rel="noopener" href="https://2024.msrconf.org/" class="uri">https://2024.msrconf.org/</a></li>
+<li><strong>B16.</strong> Zhang, T., Irsan, I. C., Thung, F., &amp; Lo, D. (2025). Revisiting sentiment analysis for software engineering in the era of large language models. <em>ACM TOSEM, 34</em>(3), 1–30. <a target="_blank" rel="noopener" href="https://doi.org/10.1145/3697009" class="uri">https://doi.org/10.1145/3697009</a></li>
+<li><strong>B17.</strong> Nguyen, L., Liu, C., Lin, H. Y., &amp; Thongtanunam, P. (2025). Exploring the potential of large language models in fine-grained review comment classification. <em>IEEE SCAM 2025</em>. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2508.09832" class="uri">https://arxiv.org/abs/2508.09832</a></li>
+<li><strong>B18.</strong> Cynthia, S. T., Widyasari, R., Roy, B., Zhang, T., &amp; Lo, D. (2026). “Go home Copilot, you’re drunk”: Understanding developer responses to agent-generated code review comments [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2607.21997" class="uri">https://arxiv.org/abs/2607.21997</a></li>
+<li><strong>B19.</strong> Fatima, S. K., Abrar, Y., Tahir, A. R., Nawaz, A., Abid, S., &amp; Bangash, A. A. (2026). On the footprints of reviewer bots feedback on agentic pull requests in OSS GitHub repositories. <em>MSR 2026</em>. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.24450" class="uri">https://arxiv.org/abs/2604.24450</a></li>
+<li><strong>B20.</strong> Alshaikh, M., Alshaher, T., Vieira, R., Santana, B., Xavier, C., Amancio, J., Carneiro, G., Leite, J., Freire, S., &amp; Mendonça, M. (2026). Prompt engineering strategies for LLM-based qualitative coding of psychological safety in software engineering communities: A controlled empirical study. <em>PROMPT-SE @ EASE 2026</em>. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2605.07422" class="uri">https://arxiv.org/abs/2605.07422</a></li>
+<li><strong>B21.</strong> Camporese, M., Massacci, F., &amp; Gong, Y. (2026). LLMs for qualitative data analysis fail on security-specific comments in human experiments. <em>ICPC 2026</em>, 515–526. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2604.10834" class="uri">https://arxiv.org/abs/2604.10834</a></li>
+<li><strong>B22.</strong> Rasheed, Z., Waseem, M., Ahmad, A., Kemell, K.-K., Wang, X., Nguyen Duc, A., &amp; Abrahamsson, P. (2024). Can large language models serve as data analysts? A multi-agent assisted approach for qualitative data analysis [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2402.01386" class="uri">https://arxiv.org/abs/2402.01386</a></li>
+<li><strong>B23.</strong> Sammon, D., McCarthy, S., Thummadi, B. V., Wibisono, A., &amp; Fitzgerald, B. (2024). Exploring the potential of large language models (LLMs) for grounded theorizing: A human-in-the-loop configuration. <em>ICIS 2024</em>. <a target="_blank" rel="noopener" href="https://aisel.aisnet.org/icis2024/adv_theory/adv_theory/3/" class="uri">https://aisel.aisnet.org/icis2024/adv_theory/adv_theory/3/</a></li>
+<li><strong>B24.</strong> Steinmacher, I., Penney, J. M., Felizardo, K. R., Garcia, A., &amp; Gerosa, M. (2024). Can ChatGPT emulate humans in software engineering surveys? <em>ESEM 2024</em>. <a target="_blank" rel="noopener" href="https://conf.researchr.org/home/esem-2024" class="uri">https://conf.researchr.org/home/esem-2024</a></li>
+<li><strong>B25.</strong> Gerosa, M., Trinkenreich, B., Steinmacher, I., &amp; Sarma, A. (2024). Can AI serve as a substitute for human subjects in software engineering research? <em>Automated Software Engineering, 31</em>(1), 13. <a target="_blank" rel="noopener" href="https://doi.org/10.1007/s10515-023-00409-6" class="uri">https://doi.org/10.1007/s10515-023-00409-6</a></li>
+<li><strong>B26.</strong> de Souza Santos, R., Santos, I., Baldassarre, M. T., Magalhães, C., &amp; Wessel, M. (2025). An investigation on how AI-generated responses affect software engineering surveys. <em>WSESE 2026</em>. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.17455" class="uri">https://arxiv.org/abs/2512.17455</a></li>
+<li><strong>B27.</strong> Angermeir, F., Amougou, M., Kreitz, M., Bauer, A., Linhuber, M., Fucci, D., Moyón C., F., Mendez, D., &amp; Gorschek, T. (2025). Reflections on the reproducibility of commercial LLM performance in empirical software engineering studies [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2510.25506" class="uri">https://arxiv.org/abs/2510.25506</a></li>
+<li><strong>B28.</strong> Korn, A., Gorsch, S., &amp; Vogelsang, A. (2025). LLMREI: Automating requirements elicitation interviews with LLMs [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2507.02564" class="uri">https://arxiv.org/abs/2507.02564</a></li>
+<li><strong>B29.</strong> Hoda, R. (2024). <em>Qualitative research with socio-technical grounded theory</em>. Springer. <a target="_blank" rel="noopener" href="https://doi.org/10.1007/978-3-031-60533-8" class="uri">https://doi.org/10.1007/978-3-031-60533-8</a></li>
+<li><strong>B30.</strong> Treude, C., Fan, Y., Xiao, T., &amp; Hata, H. (2025). Harmonized coding with AI: LLMs for qualitative analysis in software engineering research [Tutorial]. MSR 2025. <a target="_blank" rel="noopener" href="https://2025.msrconf.org/details/msr-2025-tutorials/2/" class="uri">https://2025.msrconf.org/details/msr-2025-tutorials/2/</a></li>
+<li><strong>B34.</strong> Candello, H., Geyer, W., Kunde, S., Muller, M., Sarkar, D., He, J., Lanza, M. C., Rosemberg, C., Davison, G., &amp; Pelletier, L. (2025). The emerging use of GenAI for UX research in software development: Challenges and opportunities [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2512.15944" class="uri">https://arxiv.org/abs/2512.15944</a></li>
+<li><strong>B35.</strong> Baltes, S., &amp; Ralph, P. (2022). Sampling in software engineering research: A critical review and guidelines. <em>Empirical Software Engineering, 27</em>(4). <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2002.07764" class="uri">https://arxiv.org/abs/2002.07764</a></li>
+<li><strong>B36.</strong> Al Mujahid, A., Chatterjee, P., &amp; Imran, M. M. (2026). Empirical study on the characteristics and evolution of AI-usage in GitHub repositories: Evidence from code comments [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2606.06843" class="uri">https://arxiv.org/abs/2606.06843</a></li>
+</ul>
+<h3>Literatura cinzenta (C)</h3>
+<p>Todos os itens foram acessados em 17/11/2026. C36, C47 e C50 são os mesmos documentos que A13, B04 e A48.</p>
+<h4>Políticas de editoras, órgãos de integridade e financiadores</h4>
+<ul>
+<li><strong>C01.</strong> Elsevier. Generative AI policies for journals. <a target="_blank" rel="noopener" href="https://www.elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals" class="uri">https://www.elsevier.com/about/policies-and-standards/generative-ai-policies-for-journals</a></li>
+<li><strong>C02.</strong> Springer Nature. Editorial policies (seção de IA). <a target="_blank" rel="noopener" href="https://www.springernature.com/gp/policies/editorial-policies" class="uri">https://www.springernature.com/gp/policies/editorial-policies</a></li>
+<li><strong>C03.</strong> Wiley. Ethics guidelines: generative AI guidance for authors. <a target="_blank" rel="noopener" href="https://authors.wiley.com/ethics-guidelines/index.html" class="uri">https://authors.wiley.com/ethics-guidelines/index.html</a></li>
+<li><strong>C04.</strong> Taylor &amp; Francis. AI Policy. <a target="_blank" rel="noopener" href="https://taylorandfrancis.com/our-policies/ai-policy/" class="uri">https://taylorandfrancis.com/our-policies/ai-policy/</a></li>
+<li><strong>C05.</strong> Sage. Artificial intelligence policy. <a target="_blank" rel="noopener" href="https://www.sagepub.com/journals/publication-ethics-policies/artificial-intelligence-policy" class="uri">https://www.sagepub.com/journals/publication-ethics-policies/artificial-intelligence-policy</a></li>
+<li><strong>C06.</strong> PLOS. Ethical publishing practice: AI tools and technologies. <a target="_blank" rel="noopener" href="https://journals.plos.org/plosone/s/ethical-publishing-practice" class="uri">https://journals.plos.org/plosone/s/ethical-publishing-practice</a></li>
+<li><strong>C07.</strong> IEEE. Guidelines for AI-generated content. <a target="_blank" rel="noopener" href="https://journals.ieeeauthorcenter.ieee.org/become-an-ieee-journal-author/publishing-ethics/guidelines-and-policies/submission-and-peer-review-policies/" class="uri">https://journals.ieeeauthorcenter.ieee.org/become-an-ieee-journal-author/publishing-ethics/guidelines-and-policies/submission-and-peer-review-policies/</a></li>
+<li><strong>C08.</strong> ICMJE. AI use by authors. <a target="_blank" rel="noopener" href="https://www.icmje.org/recommendations/browse/artificial-intelligence/ai-use-by-authors.html" class="uri">https://www.icmje.org/recommendations/browse/artificial-intelligence/ai-use-by-authors.html</a></li>
+<li><strong>C09.</strong> WAME (Zielinski et al.) (2023). Chatbots, generative AI, and scholarly manuscripts. <a target="_blank" rel="noopener" href="https://wame.org/page3.php?id=106" class="uri">https://wame.org/page3.php?id=106</a></li>
+<li><strong>C10.</strong> Comissão Europeia, DG RTD (2026). Living guidelines on the responsible use of generative AI in research, 4ª ed. <a target="_blank" rel="noopener" href="https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en" class="uri">https://research-and-innovation.ec.europa.eu/document/download/2b6cf7e5-36ac-41cb-aab5-0d32050143dc_en</a></li>
+<li><strong>C11.</strong> UKRI (2024). Use of generative AI in application preparation and assessment. <a target="_blank" rel="noopener" href="https://www.ukri.org/publications/generative-artificial-intelligence-in-application-and-assessment-policy/use-of-generative-artificial-intelligence-in-application-preparation-and-assessment/" class="uri">https://www.ukri.org/publications/generative-artificial-intelligence-in-application-and-assessment-policy/use-of-generative-artificial-intelligence-in-application-preparation-and-assessment/</a></li>
+<li><strong>C12.</strong> NIH/NCCIH (2023). Think again before using generative AI during peer review or as you prepare an application. <a target="_blank" rel="noopener" href="https://www.nccih.nih.gov/research/blog/think-again-before-using-generative-ai-during-peer-review-or-as-you-prepare-an-application" class="uri">https://www.nccih.nih.gov/research/blog/think-again-before-using-generative-ai-during-peer-review-or-as-you-prepare-an-application</a></li>
+<li><strong>C13.</strong> Revista Pesquisa FAPESP (2026). Arcabouço consolidado (sobre a Portaria CNPq 2.664/2026). <a target="_blank" rel="noopener" href="https://revistapesquisa.fapesp.br/arcabouco-consolidado/" class="uri">https://revistapesquisa.fapesp.br/arcabouco-consolidado/</a></li>
+</ul>
+<h4>Ferramentas de análise qualitativa (documentação de fornecedores)</h4>
+<ul>
+<li><strong>C14.</strong> ATLAS.ti. AI Coding powered by OpenAI. <a target="_blank" rel="noopener" href="https://atlasti.com/ai-coding-powered-by-openai" class="uri">https://atlasti.com/ai-coding-powered-by-openai</a></li>
+<li><strong>C15.</strong> ATLAS.ti. AI data security and privacy. <a target="_blank" rel="noopener" href="https://atlasti.com/ai-data-security-and-privacy" class="uri">https://atlasti.com/ai-data-security-and-privacy</a></li>
+<li><strong>C16.</strong> ATLAS.ti (2026). Intentional AI Coding (manual Windows v26). <a target="_blank" rel="noopener" href="https://manuals.atlasti.com/Win/en/manual/SearchAndCode/IntentionalAICoding.html" class="uri">https://manuals.atlasti.com/Win/en/manual/SearchAndCode/IntentionalAICoding.html</a></li>
+<li><strong>C17.</strong> ATLAS.ti Help Center. Best practices for using AI features in your qualitative analysis. <a target="_blank" rel="noopener" href="https://atlastihelp.helpscoutdocs.com/article/771-best-practices-for-using-ai-features-in-your-qualitative-analysis" class="uri">https://atlastihelp.helpscoutdocs.com/article/771-best-practices-for-using-ai-features-in-your-qualitative-analysis</a></li>
+<li><strong>C18.</strong> Lumivero/QSR. About the AI Assistant in NVivo 15. <a target="_blank" rel="noopener" href="https://techcenter.qsrinternational.com/Content/ai/ai_about_nvivo_add-on_for_aiassistant.htm" class="uri">https://techcenter.qsrinternational.com/Content/ai/ai_about_nvivo_add-on_for_aiassistant.htm</a></li>
+<li><strong>C19.</strong> Lumivero (2026). Can you use ChatGPT for qualitative research? <a target="_blank" rel="noopener" href="https://lumivero.com/resources/blog/can-you-use-chatgpt-for-qualitative-research/" class="uri">https://lumivero.com/resources/blog/can-you-use-chatgpt-for-qualitative-research/</a> (blog de fornecedor)</li>
+<li><strong>C20.</strong> di Gregorio, S. (Lumivero) (2025/2026). State of AI in qualitative research. <a target="_blank" rel="noopener" href="https://lumivero.com/resources/blog/state-of-ai-in-qualitative-research/" class="uri">https://lumivero.com/resources/blog/state-of-ai-in-qualitative-research/</a> (blog de fornecedor)</li>
+<li><strong>C21.</strong> MAXQDA. AI Assist. <a target="_blank" rel="noopener" href="https://www.maxqda.com/products/ai-assist" class="uri">https://www.maxqda.com/products/ai-assist</a></li>
+<li><strong>C22.</strong> MAXQDA Help Center. Data security and data privacy of AI Assist. <a target="_blank" rel="noopener" href="https://help.maxqda.com/en/support/solutions/articles/80001135288-what-about-data-security-and-data-privacy-of-ai-assist-" class="uri">https://help.maxqda.com/en/support/solutions/articles/80001135288-what-about-data-security-and-data-privacy-of-ai-assist-</a></li>
+<li><strong>C23.</strong> Delve (2026). AI features in QDA software (2026): comparação. <a target="_blank" rel="noopener" href="https://delvetool.com/blog/ai-features-in-qda-software" class="uri">https://delvetool.com/blog/ai-features-in-qda-software</a> (fornecedor concorrente)</li>
+<li><strong>C24.</strong> Limpaecher, A. (Delve) (2026). How to build and apply a thematic analysis codebook using AI. <a target="_blank" rel="noopener" href="https://delvetool.com/blog/how-to-create-apply-thematic-analysis-codebook-using-ai" class="uri">https://delvetool.com/blog/how-to-create-apply-thematic-analysis-codebook-using-ai</a></li>
+<li><strong>C25.</strong> QualCoder (2026). Blog do projeto. <a target="_blank" rel="noopener" href="https://qualcoder.wordpress.com/" class="uri">https://qualcoder.wordpress.com/</a></li>
+<li><strong>C26.</strong> QualCoder. Wiki (configuração de IA). <a target="_blank" rel="noopener" href="https://github.com/ccbogel/QualCoder/wiki/4.8.-AI-Setup" class="uri">https://github.com/ccbogel/QualCoder/wiki/4.8.-AI-Setup</a></li>
+<li><strong>C27.</strong> Turner, D. (Quirkos) (2024). Outsourcing decision making: AI, ethics, and qualitative research. <a target="_blank" rel="noopener" href="https://www.quirkos.com/blog/post/outsourcing-decision-making-ai-ethics-and-qualitative-research/" class="uri">https://www.quirkos.com/blog/post/outsourcing-decision-making-ai-ethics-and-qualitative-research/</a></li>
+<li><strong>C28.</strong> Dedoose. Blog. <a target="_blank" rel="noopener" href="https://www.dedoose.com/blog" class="uri">https://www.dedoose.com/blog</a></li>
+</ul>
+<h4>Universidades, comitês de ética e orientação nacional</h4>
+<ul>
+<li><strong>C29.</strong> Lehigh University IRB. Guidance: generative AI and human subjects research. <a target="_blank" rel="noopener" href="https://research.lehigh.edu/policies-guidance-forms/guidance-generative-ai-and-human-subjects-research" class="uri">https://research.lehigh.edu/policies-guidance-forms/guidance-generative-ai-and-human-subjects-research</a></li>
+<li><strong>C30.</strong> Teachers College, Columbia University IRB (2026). AI tools in research with Indigenous communities. <a target="_blank" rel="noopener" href="https://www.tc.columbia.edu/institutional-review-board/irb-blog/2026/ai-tools-in-research-with-indigenous-communities/" class="uri">https://www.tc.columbia.edu/institutional-review-board/irb-blog/2026/ai-tools-in-research-with-indigenous-communities/</a></li>
+<li><strong>C31.</strong> SETU (Irlanda). AI for researchers: case studies. <a target="_blank" rel="noopener" href="https://ai-for-researchers.setu.ie/guidance-for-supervisors/case-studies" class="uri">https://ai-for-researchers.setu.ie/guidance-for-supervisors/case-studies</a></li>
+<li><strong>C32.</strong> Leiden University, FGGA (2025). Principles for working with GenAI within FGGA. <a target="_blank" rel="noopener" href="https://www.organisatiegids.universiteitleiden.nl/binaries/content/assets/governance-and-global-affairs/fgga/belangrijke-documenten/genai-in-fgga-integrated-v1-augustus-definitive.pdf" class="uri">https://www.organisatiegids.universiteitleiden.nl/binaries/content/assets/governance-and-global-affairs/fgga/belangrijke-documenten/genai-in-fgga-integrated-v1-augustus-definitive.pdf</a></li>
+<li><strong>C33.</strong> CAQDAS Networking Project, University of Surrey (2025). Ethics of AI in QDA. <a target="_blank" rel="noopener" href="https://www.surrey.ac.uk/computer-assisted-qualitative-data-analysis/qual-ai/ethics-ai-qda" class="uri">https://www.surrey.ac.uk/computer-assisted-qualitative-data-analysis/qual-ai/ethics-ai-qda</a></li>
+<li><strong>C34.</strong> Moisés, C. (PGLA-UnB) (2026). Orientações objetivas para uso de IA na pesquisa científica. <a target="_blank" rel="noopener" href="https://pgla.unb.br/wp-content/uploads/2026/05/Orientacoes-objetivas-para-uso-de-IA-na-pesquisa-cientifica.pdf" class="uri">https://pgla.unb.br/wp-content/uploads/2026/05/Orientacoes-objetivas-para-uso-de-IA-na-pesquisa-cientifica.pdf</a></li>
+<li><strong>C35.</strong> Ministério da Saúde, INAEP (2026). MARIAH: Matriz de avaliação de risco em IA em pesquisa com seres humanos, v1.0. <a target="_blank" rel="noopener" href="https://www.gov.br/saude/pt-br/composicao/orgaos-colegiados/inaep/publicacoes/guia-de-uso-da-matriz-de-avaliacao-de-risco-em-inteligencia-artificial-em-pesquisa-com-seres-humanos-mariah.pdf" class="uri">https://www.gov.br/saude/pt-br/composicao/orgaos-colegiados/inaep/publicacoes/guia-de-uso-da-matriz-de-avaliacao-de-risco-em-inteligencia-artificial-em-pesquisa-com-seres-humanos-mariah.pdf</a></li>
+</ul>
+<h4>Metodologistas, praticantes e o debate</h4>
+<ul>
+<li><strong>C36.</strong> = A13 (carta de Jowsey et al.).</li>
+<li><strong>C37.</strong> Silver, C. (2026). We don’t need to lose our (qualitative) minds in the GenAI era, but we might. <a target="_blank" rel="noopener" href="https://blogs.surrey.ac.uk/caqdas/?p=213" class="uri">https://blogs.surrey.ac.uk/caqdas/?p=213</a></li>
+<li><strong>C38.</strong> Silver, C. (2025). What I think about what’s happening in the Qual-AI space. <a target="_blank" rel="noopener" href="https://blogs.surrey.ac.uk/caqdas/?p=194" class="uri">https://blogs.surrey.ac.uk/caqdas/?p=194</a></li>
+<li><strong>C39.</strong> Silver, C. (2025). Enacting methodologically grounded qualitative coding via critical use of manual, digital and GenAI tools (NCRM). <a target="_blank" rel="noopener" href="https://www.ncrm.ac.uk/documents/Enacting_Methodologically_Grounded_Qualitative_Coding.pdf" class="uri">https://www.ncrm.ac.uk/documents/Enacting_Methodologically_Grounded_Qualitative_Coding.pdf</a></li>
+<li><strong>C40.</strong> Causal Map Ltd (2026). Causal mapping as QDA (manuscrito). <a target="_blank" rel="noopener" href="https://garden.causalmap.app/250%20causal%20mapping%20as%20qda/!manuscript" class="uri">https://garden.causalmap.app/250%20causal%20mapping%20as%20qda/!manuscript</a> (fornecedor)</li>
+<li><strong>C41.</strong> Friese, S. (2025). Conversational Analysis to the Power of AI (CAAI) [Preprint OSF]. <a target="_blank" rel="noopener" href="https://ideas.repec.org/p/osf/osfxxx/6b52m_v2.html" class="uri">https://ideas.repec.org/p/osf/osfxxx/6b52m_v2.html</a></li>
+<li><strong>C42.</strong> Geiecke, F., &amp; Jaravel, X. (2024). AI can carry out qualitative research at unprecedented scale. LSE Impact Blog. <a target="_blank" rel="noopener" href="https://blogs.lse.ac.uk/impactofsocialsciences/2024/10/30/ai-can-carry-out-qualitative-research-at-unprecedented-scale/" class="uri">https://blogs.lse.ac.uk/impactofsocialsciences/2024/10/30/ai-can-carry-out-qualitative-research-at-unprecedented-scale/</a></li>
+<li><strong>C43.</strong> Schildt, H. (2025). How to use AI in qualitative research: A guide for academic researchers. <a target="_blank" rel="noopener" href="https://www.leuphana.de/fileadmin/user_upload/Forschungseinrichtungen/imo/personen/schuessler_elke/files/How_to_Use_AI_in_Qualitative_Research\_-\_A_Guide_for_Academic_Researchers_2025.pdf" class="uri">https://www.leuphana.de/fileadmin/user_upload/Forschungseinrichtungen/imo/personen/schuessler_elke/files/How_to_Use_AI_in_Qualitative_Research\_-\_A_Guide_for_Academic_Researchers_2025.pdf</a> (o autor é cofundador da Skimle)</li>
+<li><strong>C44.</strong> Jones, K. (Cranfield Library) (2025). Evaluating AI tools for research analysis. <a target="_blank" rel="noopener" href="https://blogs.cranfield.ac.uk/library/evaluating-ai-tools-for-research/" class="uri">https://blogs.cranfield.ac.uk/library/evaluating-ai-tools-for-research/</a></li>
+<li><strong>C45.</strong> Nacke, L. (2025). How I cracked the code on AI-assisted qualitative analysis (Substack). <a target="_blank" rel="noopener" href="https://lennartnacke.substack.com/p/how-i-cracked-the-code-on-ai-assisted" class="uri">https://lennartnacke.substack.com/p/how-i-cracked-the-code-on-ai-assisted</a></li>
+<li><strong>C46.</strong> Turner, D. (2018). Can a computer do qualitative analysis? NCRM BigQLR. <a target="_blank" rel="noopener" href="https://bigqlr.ncrm.ac.uk/?p=765" class="uri">https://bigqlr.ncrm.ac.uk/?p=765</a></li>
+</ul>
+<h4>Diretrizes de relato</h4>
+<ul>
+<li><strong>C47.</strong> = B04 (llm-guidelines.org).</li>
+<li><strong>C48.</strong> Luo, X., et al. (GAMER Working Group) (2025). Reporting guideline for the use of generative AI tools in medical research: The GAMER statement. <a target="_blank" rel="noopener" href="https://www.equator-network.org/reporting-guidelines/reporting-guideline-for-the-use-of-generative-artificial-intelligence-tools-in-medical-research-the-gamer-statement/" class="uri">https://www.equator-network.org/reporting-guidelines/reporting-guideline-for-the-use-of-generative-artificial-intelligence-tools-in-medical-research-the-gamer-statement/</a></li>
+<li><strong>C49.</strong> Luo, X., et al. (2025). GAMER: Protocol for scoping review and development of reporting guidelines. <em>JMIR Research Protocols, 14</em>, e64640. <a target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12395103/" class="uri">https://pmc.ncbi.nlm.nih.gov/articles/PMC12395103/</a></li>
+<li><strong>C50.</strong> = A48 (COREQ+LLM).</li>
+<li><strong>C51.</strong> Cacciamani, G., et al. (2023). Development of the CANGARU guidelines [Preprint]. <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2307.08974" class="uri">https://arxiv.org/abs/2307.08974</a></li>
+<li><strong>C52.</strong> Huo, B., Collins, G. S., et al. (2024). Protocol for the development of the Chatbot Assessment Reporting Tool (CHART). <em>BMJ Open</em>. <a target="_blank" rel="noopener" href="https://ora.ox.ac.uk/objects/uuid:fae7f79d-5a97-4842-86e3-26bfc2bca179" class="uri">https://ora.ox.ac.uk/objects/uuid:fae7f79d-5a97-4842-86e3-26bfc2bca179</a></li>
+<li><strong>C53.</strong> TRIPOD-LLM group. TRIPOD-LLM checklist (ferramenta web). <a target="_blank" rel="noopener" href="https://tripod-llm.vercel.app/" class="uri">https://tripod-llm.vercel.app/</a></li>
+</ul>
+
+  </section>
+
+  <footer>
+    <div><a href="index.html">← Pós-doutorado · CESAR School</a></div>
+    <div>Atualizado em 17/11/2026</div>
+  </footer>
+
+</main>
+</body>
+</html>

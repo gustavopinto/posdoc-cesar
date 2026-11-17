@@ -3,7 +3,7 @@ FROM nginx:alpine
 # Site estático. Copiamos SÓ os arquivos do site: esta pasta também guarda
 # materiais do pós-doc (termos de bolsa, dados de survey, repositórios de
 # alunos) que nunca devem ir para a imagem.
-COPY index.html /usr/share/nginx/html/
+COPY index.html ia-pesquisa-qualitativa.html /usr/share/nginx/html/
 
 # Template de configuração do nginx (a porta vem do Railway via $PORT)
 COPY nginx.conf.template /etc/nginx/templates/default.conf.template

@@ -7,7 +7,8 @@ linhas de pesquisa, publicações e estudos em andamento.
 
 ```
 .
-├── index.html            # Página única (linhas, publicações, em andamento; CSS inline)
+├── index.html            # Página inicial (linhas, publicações, em andamento; CSS inline)
+├── ia-pesquisa-qualitativa.html  # IA na pesquisa qualitativa: cookbook, métodos e cronogramas
 ├── Dockerfile            # nginx:alpine servindo o site estático
 ├── nginx.conf.template   # Config nginx (porta via $PORT, /health, cache)
 └── railway.toml          # Configuração de deploy no Railway
